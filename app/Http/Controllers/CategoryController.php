@@ -22,14 +22,14 @@ class CategoryController extends Controller
 
     public function show($id)
     {   
-        $getId = Category::where('id',$id)->get();
-        if($getId->count() < 1){
+        $getId = Category::where('id',$id)->first();
+        if(!$getId){
             return response([
                 "status_code"    => 400,
                 "status_message" => "Data not found"
             ], 400);
         }
-        $category = Category::find($id);
+        $category = Category::find($getId->id);
             return response([
                 "status_code"   => 200,
                 "data"          => $category
@@ -66,8 +66,8 @@ class CategoryController extends Controller
 
     public function update(Request $req, $id)
     {   
-        $getId = Category::where('id',$id)->get();
-        if($getId->count() < 1){
+        $getId = Category::where('id',$id)->first();
+        if(!$getId){
             return response([
                 "status_code"    => 400,
                 "status_message" => "Data not found"
@@ -91,7 +91,7 @@ class CategoryController extends Controller
             'name'      => $req->input('name'),
             'enable'    => $req->input('enable')
         ];
-        Category::where('id',$id)->update($dataCategory);
+        Category::where('id',$getId->id)->update($dataCategory);
 
         return response([
             "status_code"       => 200,
@@ -101,8 +101,8 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
-        $getId = Category::where('id',$id)->get();
-        if($getId->count() < 1){
+        $getId = Category::where('id',$id)->first();
+        if(!$getId){
             return response([
                 "status_code"    => 400,
                 "status_message" => "Data not found"

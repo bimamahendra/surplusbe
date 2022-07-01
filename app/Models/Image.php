@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Eloquent;
 
-class Image extends Model
+class Image extends Eloquent
 {
+    protected $table = 'images';
+    protected $primaryKey = "id";
     protected $fillable = [
         'name',
         'file',

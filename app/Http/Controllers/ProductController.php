@@ -22,14 +22,14 @@ class ProductController extends Controller
 
     public function show($id)
     {   
-        $getId = Product::where('id',$id)->get();
-        if($getId->count() < 1){
+        $getId = Product::where('id',$id)->first();
+        if(!$getId){
             return response([
                 "status_code"    => 400,
                 "status_message" => "Data not found"
             ], 400);
         }
-        $product = Product::find($id);
+        $product = Product::find($getId->id);
             return response([
                 "status_code"   => 200,
                 "data"          => $product
@@ -68,8 +68,8 @@ class ProductController extends Controller
 
     public function update(Request $req, $id)
     {   
-        $getId = Product::where('id',$id)->get();
-        if($getId->count() < 1){
+        $getId = Product::where('id',$id)->first();
+        if(!$getId){
             return response([
                 "status_code"    => 400,
                 "status_message" => "Data not found"
@@ -95,7 +95,7 @@ class ProductController extends Controller
             'description'   => $req->input('description'),
             'enable'        => $req->input('enable')
         ];
-        Product::where('id',$id)->update($dataProduct);
+        Product::where('id',$getId->id)->update($dataProduct);
 
         return response([
             "status_code"       => 200,
@@ -105,8 +105,8 @@ class ProductController extends Controller
 
     public function destroy($id)
     {
-        $getId = Product::where('id',$id)->get();
-        if($getId->count() < 1){
+        $getId = Product::where('id',$id)->first();
+        if(!$getId){
             return response([
                 "status_code"    => 400,
                 "status_message" => "Data not found"

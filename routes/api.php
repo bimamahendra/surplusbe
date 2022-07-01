@@ -36,3 +36,11 @@ Route::group(['prefix'=>'category'], function () {
     Route::put('/{id}', [CategoryController::class, 'update']);
     Route::delete('/{id}', [CategoryController::class, 'destroy']);
 });
+
+Route::group(['prefix'=>'image'], function () {
+    Route::get('/', [ImageController::class, 'index']);
+    Route::get('/{id}', [ImageController::class, 'show']);
+    Route::post('/', [ImageController::class, 'store']);
+    Route::post('update/', [ImageController::class, 'update']);
+    Route::delete('/{id}', [ImageController::class, 'destroy']);
+});
