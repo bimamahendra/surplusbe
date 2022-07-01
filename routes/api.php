@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -46,10 +47,10 @@ Route::group(['prefix'=>'image'], function () {
     Route::delete('/{id}', [ImageController::class, 'destroy']);
 });
 
-Route::group(['prefix'=>'category_product'], function () {
-    Route::get('/', [CategoryProductController::class, 'index']);
-    Route::get('/{id}', [CategoryProductController::class, 'show']);
-    Route::post('/', [CategoryProductController::class, 'store']);
-    Route::put('/{id}', [CategoryProductController::class, 'update']);
-    Route::delete('/{id}', [CategoryProductController::class, 'destroy']);
+Route::group(['prefix'=>'item'], function () {
+    Route::get('/', [ItemController::class, 'index']);
+    Route::get('/{id}', [ItemController::class, 'show']);
+    Route::post('/', [ItemController::class, 'store']);
+    Route::put('/{id}', [ItemController::class, 'update']);
+    Route::delete('/{id}', [ItemController::class, 'destroy']);
 });
