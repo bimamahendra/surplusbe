@@ -148,7 +148,7 @@ class ImageController extends Controller
         }
         if(File::exists(public_path($destinationPath.$getId->file))){
             File::delete(public_path($destinationPath.$getId->file));
-            Image::where('id',$id)->delete();
+            Image::where('id',$getId->id)->delete();
         }
         return response([
             "status_code"    => 200,

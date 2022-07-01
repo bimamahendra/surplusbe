@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
@@ -43,4 +44,12 @@ Route::group(['prefix'=>'image'], function () {
     Route::post('/', [ImageController::class, 'store']);
     Route::post('update/', [ImageController::class, 'update']);
     Route::delete('/{id}', [ImageController::class, 'destroy']);
+});
+
+Route::group(['prefix'=>'category_product'], function () {
+    Route::get('/', [CategoryProductController::class, 'index']);
+    Route::get('/{id}', [CategoryProductController::class, 'show']);
+    Route::post('/', [CategoryProductController::class, 'store']);
+    Route::put('/{id}', [CategoryProductController::class, 'update']);
+    Route::delete('/{id}', [CategoryProductController::class, 'destroy']);
 });
